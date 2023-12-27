@@ -35,6 +35,7 @@ var context = services.GetRequiredService<StoreContext>();
 var logger = services.GetRequiredService<ILogger<Program>>();
 try {
     await context.Database.MigrateAsync();
+    await StoreContextSeed.SeedAsync(context);
 } catch (Exception ex) {
     logger.LogError(ex, "An error occoured during migration");
 }
